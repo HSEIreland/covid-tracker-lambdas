@@ -1,0 +1,40 @@
+{
+  "name": "contact-tracing-lambda",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Lambda functions for contact tracing",
+  "main": "stats.js",
+  "scripts": {
+    "artifact:create": "zip -r stats.zip *",
+    "cso": "env-cmd -f .env node cso.js",
+    "exposures": "env-cmd -f .env node exposures.js",
+    "settings": "env-cmd -f .env node settings.js",
+    "stats": "env-cmd -f .env node stats.js",
+    "token:push": "env-cmd -f .env node token.js \"{ \\\"type\\\": \\\"push\\\" }\"",
+    "token:register": "env-cmd -f .env node token.js \"{ \\\"type\\\": \\\"register\\\" }\""
+  },
+  "dependencies": {
+    "@nearform/sql": "^1.4.0",
+    "archiver": "^4.0.1",
+    "aws-sdk": "^2.646.0",
+    "flat": "^5.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "node-fetch": "^2.6.0",
+    "openpgp": "^4.10.2",
+    "pg": "^7.18.2",
+    "pg-range": "^1.1.0",
+    "protobufjs": "^6.9.0",
+    "ssh2-sftp-client": "^5.1.2"
+  },
+  "devDependencies": {
+    "env-cmd": "^10.1.0"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "prettier": "prettier-config-standard"
+}
